@@ -1,1 +1,72 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,500&display=swap");
+
+:root {
+  --main-color: #ff0;
+  --light-white: rgba(255, 255, 255, 0.5);
+  --light-black: rgba(0, 0, 0, 0.3);
+  --light-bg: rgba(255, 255, 255, 0.1);
+  --white: #fff;
+  --black: #000;
+  --orange: #d57d1f;
+  --box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  --font-family: "Poppins", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: white;
+  height: 100vh;
+  background-color: #eee;
+  color: var(--black);
+}
+
+header {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  padding: 0;
+  background-color: white;
+}
+
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin-left: 10px;
+}
+
+header nav ul li {
+  padding-left: 1em;
+  cursor: pointer;
+}
+
+.show-home {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 54px;
+  justify-content: center;
+}
+
+.select-show {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+}
+
+.fa-bars {
+  display: none;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
