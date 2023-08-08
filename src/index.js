@@ -5,8 +5,8 @@ import './style.css';
 
 // getData();
 
-import { displayShows } from "./modules/displayList.js";
-import { handleLikes } from "./modules/displayLikes.js";
+import displayShows from './modules/displayList.js';
+import handleLikes from './modules/displayLikes.js';
 
 async function getData() {
   const response = await fetch('https://api.tvmaze.com/search/shows?q=girls');
