@@ -1,10 +1,6 @@
 // index.js
 
 import './style.css';
-// import getData from './modules/displayList.js';
-
-// getData();
-
 import displayShows from './modules/displayList.js';
 import handleLikes from './modules/displayLikes.js';
 
