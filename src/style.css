@@ -64,3 +64,9 @@ header nav ul li {
 .fa-bars {
   display: none;
 }
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
