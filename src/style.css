@@ -78,3 +78,9 @@ header nav ul li {
 .like-count {
   margin-top: -2px;
 }
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
