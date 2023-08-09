@@ -1,3 +1,5 @@
+import popupComment from "./popupComment.js";
+
 async function getData() {
   const response = await fetch('https://api.tvmaze.com/search/shows?q=girls');
   const data = await response.json();
@@ -33,17 +35,19 @@ async function getData() {
 
       // Create "Comments" button
       const commentsButton = document.createElement('button');
+      commentsButton.id = data.maze[i].idMaze;
       commentsButton.textContent = 'Comments';
+      //commentsButton.innerHTML = "Comment";
       buttonsContainer.appendChild(commentsButton);
-
-      // Create "Reservations" button
-      const reservationsButton = document.createElement('button');
-      reservationsButton.textContent = 'Reservations';
-      buttonsContainer.appendChild(reservationsButton);
 
       // Append the buttons container to the list
       list.appendChild(buttonsContainer);
     }
+
+    commentsButton.addEventListener("click", (e) => {
+      const { id } = e.target;
+      popupComment(id);
+   });
   }
 }
 
