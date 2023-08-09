@@ -1,6 +1,10 @@
 // index.js
 
 import './style.css';
-import getData from './modules/displayList.js';
+import { getData, handleLikes } from './modules/displayList.js';
+// import handleLikes from './modules/displayLikes.js';
 
-getData();
+document.addEventListener('DOMContentLoaded', () => {
+  getData();
+  handleLikes();
+});
