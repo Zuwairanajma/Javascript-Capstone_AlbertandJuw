@@ -1,10 +1,13 @@
-// import popupComment from './display-popup-comment';
+import popupComment from './display-popup-comment';
 import count from './items-count';
 import newLike from './new-like';
 
+// const apikey = 'tnE2k6P5BdZ2HCTjbd0V';
 async function fetchLikesData(apikey, likeid) {
   try {
+    // apikey = 'LHYarZybqm9V0G7OV772';
     apikey = 'tnE2k6P5BdZ2HCTjbd0V';
+    // apikey = '4he1GbvuBDtTPVhI6Xq5';
     const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apikey}/likes?`);
     const data = await response.json();
     return data.find((element) => element.item_id === likeid);
@@ -30,7 +33,7 @@ function handleLikeClick(like, likeData, likeCount, likeid) {
   });
 }
 
-function createMealElement(mealData) {
+function createMealElement(mealData, popupCallback) {
   const list = document.createElement('div');
   list.className = 'meal';
 
@@ -64,9 +67,9 @@ function createMealElement(mealData) {
   button.innerHTML = 'Comment';
   list.appendChild(button);
 
-  // button.addEventListener('click', () => {
-  //   popupCallback(likeid);
-  // });
+  button.addEventListener('click', () => {
+    popupCallback(likeid);
+  });
 
   return { list, like, div3 };
 }
@@ -83,7 +86,7 @@ async function renderMeals(apikey) {
     listShow.before(random);
 
     data.meals.forEach(async (mealData) => {
-      const { list, like, div3 } = createMealElement(mealData);
+      const { list, like, div3 } = createMealElement(mealData, popupComment);
       listShow.append(list);
 
       const likeData = await fetchLikesData(apikey, mealData.idMeal);
