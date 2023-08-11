@@ -1,5 +1,5 @@
 import './style.css';
 
-import getData from './modules/mealDisplay';
+import renderMeals from './modules/mealDisplay';
 
-getData();
+renderMeals();
