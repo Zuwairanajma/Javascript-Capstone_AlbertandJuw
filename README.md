@@ -81,7 +81,7 @@
 <!-- LIVE DEMO -->
 
 ## live demo <a name="livelink">Coming Soon</a>
-- [clickhere](https://axcell-0.github.io/Pokemon-API/)
+- [clickhere](https://zuwairanajma.github.io/Javascript-Capstone_AlbertandJuw/dist)
 - [video](https://drive.google.com/file/d/1fz-eplg2tfQMJXzAS9Tw96qTq3BsBEKT/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
