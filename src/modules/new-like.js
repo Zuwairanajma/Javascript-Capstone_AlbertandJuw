@@ -31,7 +31,7 @@
 
 //export default newLike;
 
-async function newLike(id) {
+const newLike = async (id) => {
 const apikey = 'LHYarZybqm9V0G7OV772';
 // const apikey = 'tnE2k6P5BdZ2HCTjbd0V';
   fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apikey}/likes/`, 
@@ -42,7 +42,7 @@ const apikey = 'LHYarZybqm9V0G7OV772';
       // likes: 1,
     }),
     headers: {
-      'Content-type': 'application/json: charset=UTF-8',
+      'Content-type': 'application/json; charset=UTF-8',
       Accept: 'application/json',
     },
   },

@@ -1,6 +1,6 @@
 import displayCommentsList from './display-comments.js';
 
-async function addNewComment(itemId, username, comment) {
+ const addNewComment = async (itemId, username, comment) => {
   const apiKey = 'LHYarZybqm9V0G7OV772';
   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apiKey}/comments/`;
 

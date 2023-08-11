@@ -1,4 +1,4 @@
-async function displayCommentsList(id) {
+ const displayCommentsList = async (id) => {
   const apiKey = 'LHYarZybqm9V0G7OV772';
   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apiKey}/comments?item_id=${id}`;
 
