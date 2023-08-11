@@ -1,7 +1,7 @@
 # Javascript-Capstone_AlbertandJuw
 <a name="readme-top"></a>
 <div align="center">
-<img src="kanbanboard-logo.png" alt="leaderboard logo" width="140"  height="auto" />
+<img src="kanbanboard-logo.png" alt="kanbanboard logo" width="140"  height="auto" />
 
   <h2>Kanban Board Project App</h2>
   <br/>
@@ -82,7 +82,7 @@
 
 ## live demo <a name="livelink">Coming Soon</a>
 - [clickhere](https://zuwairanajma.github.io/Javascript-Capstone_AlbertandJuw/dist)
-- [video](https://drive.google.com/file/d/1fz-eplg2tfQMJXzAS9Tw96qTq3BsBEKT/view?usp=sharing)
+- [video](https://drive.google.com/file/d/1EyeCIsYWUFGKX8nFjz2ayp_4T8OqxJGL/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
