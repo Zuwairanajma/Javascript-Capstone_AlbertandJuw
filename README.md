@@ -106,7 +106,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd to your desired folder 
-  git clone https://github.com/Zuwairanajma/capstone-project.git
+  git clone https://github.com/Zuwairanajma/Javascript-Capstone_AlbertandJuw.git
 ### Install
 
 Install this project with:
