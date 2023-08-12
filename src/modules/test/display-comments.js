@@ -1,14 +1,11 @@
-const displayCommentsList = (data, parent) => {
-  data.forEach((comment) => {
-    const commentContainer = document.createElement('div');
-    const title = document.createElement('h3');
-    title.innerHTML = `Comments (${data.length || 0})`;
-    commentContainer.appendChild(title);
-    const commentRow = document.createElement('p');
-    commentRow.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment} `;
-    commentContainer.appendChild(commentRow);
-    parent.appendChild(commentContainer);
-  });
+const apiUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+const appId = 'LHYarZybqm9V0G7OV772';
+const getCommentCount = async (itemId) => {
+  const response = await fetch(
+    `${apiUrl}apps/${appId}/comments?item_id=${itemId}`,
+  );
+  const data = await response.json();
+  return data.length;
 };
 
-export default displayCommentsList;
+export default getCommentCount;

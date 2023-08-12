@@ -1,54 +1,16 @@
-import displayCommentsList from './display-comments.js';
+import getCommentCount from './display-comments.js';
 
-describe('showCommentsList', () => {
-  test('should render the correct title element', () => {
-    const parent = document.createElement('div');
-    const mockedData = [
-      {
-        creation_date: '2022-11-30',
-        username: 'Anna',
-        comment: 'Good',
-      },
-      {
-        creation_date: '2022-12-01',
-        username: 'John',
-        comment: 'Excellent',
-      },
-    ];
+test('getCommentCount returns the correct comment count', async () => {
+  const mockResponse = {
+    json: jest.fn().mockResolvedValue([
+      { comment_id: 1, username: 'John', comment: 'Great item' },
+      { comment_id: 2, username: 'Jane', comment: 'Nice work' },
+    ]),
+  };
+  global.fetch = jest.fn().mockResolvedValue(mockResponse);
 
-    displayCommentsList(mockedData, parent);
+  const itemId = 1;
+  const commentCount = await getCommentCount(itemId);
 
-    // make sure that the title element is present and contains the correct text
-    const titleElement = parent.querySelector('h3');
-    expect(titleElement).not.toBeNull();
-    expect(titleElement.innerHTML).toBe(`Comments (${mockedData.length})`);
-  });
-
-  test('should render the correct number of comments', () => {
-    const parent = document.createElement('div');
-    const mockedData = [
-      {
-        creation_date: '2022-11-30',
-        username: 'Anna',
-        comment: 'Good',
-      },
-      {
-        creation_date: '2022-12-01',
-        username: 'John',
-        comment: 'Excellent',
-      },
-    ];
-
-    displayCommentsList(mockedData, parent);
-
-    // the number of comments matches the length of the mocked data array
-    expect(parent.childElementCount).toBe(mockedData.length);
-
-    // make sure that each comment element contains the correct text
-    mockedData.forEach((comment, index) => {
-      const commentContainer = parent.children[index];
-      const commentText = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
-      expect(commentContainer.innerHTML).toContain(commentText);
-    });
-  });
+  expect(commentCount).toBe(2);
 });
