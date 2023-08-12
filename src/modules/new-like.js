@@ -1,52 +1,33 @@
-// async function newLike(id) {
-//  // const apikey = 'LHYarZybqm9V0G7OV772';
-//   // const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apikey}/likes/`;
+export const apiUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
 
-//   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/LHYarZybqm9V0G7OV772/likes/`;
-
-//   try {
-//     const response = await fetch(url, {
-//       method: 'POST',
-//       body: JSON.stringify({
-//         item_id: id,
-//         likes: 1,
-//       }),
-//       headers: {
-//         'Content-type': 'application/json; charset=UTF-8',
-//         Accept: 'application/json',
-//       },
-//     });
-
-//     if (!response.ok) {
-//       throw new Error('Error adding new like');
-//     }
-
-//     // Optionally, return the parsed JSON response
-//     return response.json();
-//   } catch (error) {
-//     console.error('Error adding new like:', error);
-//     return { error: 'Error adding new like' }; // Return an error object
-//   }
-// }
-
-//export default newLike;
-
-const newLike = async (id) => {
-const apikey = 'LHYarZybqm9V0G7OV772';
-// const apikey = 'tnE2k6P5BdZ2HCTjbd0V';
-  fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apikey}/likes/`, 
-  {
-    method: 'POST',
-    body: JSON.stringify({
-      item_id: id,
-      // likes: 1,
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-      Accept: 'application/json',
-    },
-  },
-  ).then((response) => response.json());
+export const saveLikes = async (appId, itemId, likes) => {
+  try {
+    const response = await fetch(`${apiUrl}apps/${appId}/likes/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        item_id: itemId,
+        likes,
+      }),
+    });
+    const { result } = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
 };
-export default newLike;
-  
+
+export const handleSaveLikes = async (appId) => {
+  try {
+    const response = await fetch(`${apiUrl}apps/${appId}/likes/`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch game scores');
+    }
+    const { result } = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+};

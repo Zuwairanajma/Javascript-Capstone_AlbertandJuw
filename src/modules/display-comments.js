@@ -1,38 +1,32 @@
- const displayCommentsList = async (id) => {
-  const apiKey = 'LHYarZybqm9V0G7OV772';
-  const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apiKey}/comments?item_id=${id}`;
+export const apiUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
 
-  try {
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
+export const saveComment = async (appId, itemId, username, comment, creationDate) => {
+  await fetch(`${apiUrl}apps/${appId}/comments/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      item_id: itemId,
+      username,
+      comment,
+      created_at: creationDate,
+    }),
+  });
+};
 
-    if (!response.ok) {
-      throw new Error('Error fetching comments');
-    }
+export const handleSaveComment = async (itemId, appId) => {
+  const response = await fetch(
+    `${apiUrl}apps/${appId}/comments?item_id=${itemId}`,
+  );
+  const data = await response.json();
 
-    const data = await response.json();
+  const commentsWithDate = data.map((comment) => ({
+    ...comment,
+    created_at: new Date(comment.creation_date),
+  }));
 
-    const parent = document.querySelector('.comments-container-meal-popup');
-    parent.innerHTML = '';
+  const commentCount = commentsWithDate.length;
 
-    const title = document.createElement('h3');
-    title.className = 'meal-popup-comments-title';
-    title.textContent = `Comments (${data.length || 0})`;
-    parent.appendChild(title);
-
-    data.forEach((comment) => {
-      const commentRow = document.createElement('p');
-      commentRow.className = 'meal-popup-comments-row';
-      commentRow.textContent = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
-      parent.appendChild(commentRow);
-    });
-  } catch (err) {
-    console.error('Error fetching and displaying comments:', err);
-  }
-}
-
-export default displayCommentsList;
+  return { comments: commentsWithDate, commentCount };
+};

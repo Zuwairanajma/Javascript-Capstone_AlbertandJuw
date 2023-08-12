@@ -1,21 +1,21 @@
-// count.test.js
-import count from './items-count';
+import countMeals from './items-count.js';
 
-describe('count function', () => {
-  // Create a mock HTML structure for testing
-  document.body.innerHTML = `
-    <div id="meal-data">
-      <div>Child 1</div>
-      <div>Child 2</div>
-      <div>Child 3</div>
-    </div>
-    <div id="meals"></div>
-  `;
+describe('countMeals', () => {
+  document.body.innerHTML = '<li id="meals"></li>';
+  const mealCounter = document.getElementById('meals');
 
-  test('updates the meals count correctly', () => {
-    count();
+  afterEach(() => {
+    mealCounter.innerHTML = '';
+  });
 
-    const cat = document.getElementById('meals');
-    expect(cat.innerHTML).toBe('Meals (3)');
+  test('should display the correct number of meals', () => {
+    const meals = [
+      { idMeal: 52476, strMeal: 'mealName1', strMealThumb: 'image1' },
+      { idMeal: 52478, strMeal: 'mealName2', strMealThumb: 'image2' },
+      { idMeal: 52480, strMeal: 'mealName3', strMealThumb: 'image3' },
+    ];
+    mealCounter.innerHTML = `<p>Meals(${meals.length})</p>`;
+    countMeals(meals);
+    expect(mealCounter.innerHTML).toBe('<p>Meals(3)</p>');
   });
 });

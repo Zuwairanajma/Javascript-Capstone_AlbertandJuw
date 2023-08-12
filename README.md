@@ -1,12 +1,12 @@
 # Javascript-Capstone_AlbertandJuw
 <a name="readme-top"></a>
 <div align="center">
-<img src="kanbanboard-logo.png" alt="kanbanboard logo" width="140"  height="auto" />
+<img src="./asset/mealdb-logo.png" alt="mealdb logo" width="140"  height="auto" />
 
-  <h2>Kanban Board Project App</h2>
+  <h2>MEALS DB API APP</h2>
   <br/>
 
-  <h3><b>Kanban Board Project App</b></h3>
+  <h3><b>MEALS DB API APP</b></h3>
 
 </div>
 
@@ -35,9 +35,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Kanban Board Project App <a name="about-project"></a>
+# 📖 MEALS DB API APP <a name="about-project"></a>
 
->Kanban Board project is an API group project using M&N Resturant website API. We have created using HTML, CSS, Javascript, linters, and webpack.
+>MEALS DB API APP project is an API group project using M&N Resturant website API. We have created using HTML, CSS, Javascript, linters, and webpack.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -138,7 +138,10 @@ run this command: npm run start
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- coming soon !!
+- [ ] **Functionalities**
+- [ ] **Improved UI design**
+- [ ] **Enhance Designs for all screen sizes and other media queries such as "print**
+ 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
