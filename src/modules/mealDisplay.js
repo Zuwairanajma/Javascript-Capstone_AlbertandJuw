@@ -1,106 +1,57 @@
-// import popupComment from './display-popup-comment';
-import count from './items-count';
-import newLike from './new-like';
+import likesListener from './likes.js';
+import displayPopup from './display-popup-comment.js';
+import { handleSaveComment } from './display-comments.js';
 
-async function fetchLikesData(apikey, likeid) {
-  try {
-    apikey = 'tnE2k6P5BdZ2HCTjbd0V';
-    const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apikey}/likes?`);
-    const data = await response.json();
-    return data.find((element) => element.item_id === likeid);
-  } catch (error) {
-    console.error('Error fetching likes data:', error);
-    return null;
-  }
-}
+const mealList = document.getElementById('list-home');
 
-function createLikeCountElement(likeData) {
-  const likeCount = document.createElement('span');
-  likeCount.innerHTML = `likes:${likeData.likes}`;
-  return likeCount;
-}
+export default function renderRecipes(recipe, appId) {
+  const li = document.createElement('li');
+  li.classList.add('card');
 
-function handleLikeClick(like, likeData, likeCount, likeid) {
-  like.addEventListener('click', async () => {
-    if (likeData) {
-      likeData.likes += 1;
-      likeCount.innerHTML = `likes:${likeData.likes}`;
+  const img = document.createElement('img');
+  img.classList.add('meal-img');
+  img.src = recipe.strMealThumb;
+  img.alt = 'Image of food';
+
+  const h4 = document.createElement('h4');
+  h4.innerHTML = `<h4>${recipe.strMeal}</h4>
+                <span><button class='likesBtn'><i class="fa-solid fa-heart"></i></button></span>`;
+  h4.classList.add('meal-h4');
+
+  const likesValue = document.createElement('div');
+  likesValue.classList.add('likes-value');
+  likesValue.textContent = `${recipe.likes} likes`;
+
+  const commentBtn = document.createElement('button');
+  commentBtn.innerHTML = 'Comments';
+  commentBtn.type = 'submit';
+  commentBtn.id = 'modalComments';
+  commentBtn.classList.add('comment-btn');
+
+  li.append(img, h4, likesValue, commentBtn);
+  mealList.append(li);
+
+  likesListener(recipe, appId);
+
+  commentBtn.addEventListener('click', async () => {
+    const idApp = 'LHYarZybqm9V0G7OV772';
+    const popup = document.querySelector('.popup');
+    displayPopup(recipe, idApp);
+    const { comments: updatedComments, commentCount } = await handleSaveComment(
+      recipe.idMeal, idApp,
+    );
+
+    const commentList = popup.querySelector('.comment-list');
+    commentList.innerHTML = '';
+
+    if (updatedComments.length > 0) {
+      updatedComments.forEach((comment) => {
+        commentList.innerHTML += `<li> ${comment.creation_date}  ${comment.username}: ${comment.comment}</li>`;
+      });
+    } else {
+      commentList.innerHTML = '<li>No comments yet.</li>';
     }
-    await newLike(likeid);
+    const commentCountElement = popup.querySelector('.comment-count');
+    commentCountElement.textContent = `Comments(${commentCount})`;
   });
 }
-
-function createMealElement(mealData) {
-  const list = document.createElement('div');
-  list.className = 'meal';
-
-  const div = document.createElement('div');
-  div.className = 'div-img';
-  list.appendChild(div);
-
-  const descrpt1 = document.createElement('img');
-  descrpt1.src = mealData.strMealThumb;
-  div.appendChild(descrpt1);
-
-  const div2 = document.createElement('div');
-  div2.className = 'div-like';
-  list.appendChild(div2);
-
-  const p = document.createElement('p');
-  p.textContent = mealData.strMeal;
-  div2.appendChild(p);
-
-  const div3 = document.createElement('div');
-  div3.className = 'div-heart';
-  div2.appendChild(div3);
-
-  const like = document.createElement('i');
-  like.className = 'fa-solid fa-heart';
-  const likeid = mealData.idMeal;
-  div3.appendChild(like);
-
-  const button = document.createElement('button');
-  button.id = likeid;
-  button.innerHTML = 'Comment';
-  list.appendChild(button);
-
-  // button.addEventListener('click', () => {
-  //   popupCallback(likeid);
-  // });
-
-  return { list, like, div3 };
-}
-
-async function renderMeals(apikey) {
-  try {
-    const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s');
-    const data = await response.json();
-
-    const header = document.querySelector('.header');
-    const random = document.querySelector('.menu-random');
-    const listShow = document.querySelector('.list-home');
-    listShow.before(header);
-    listShow.before(random);
-
-    data.meals.forEach(async (mealData) => {
-      const { list, like, div3 } = createMealElement(mealData);
-      listShow.append(list);
-
-      const likeData = await fetchLikesData(apikey, mealData.idMeal);
-      if (likeData) {
-        const likeCount = createLikeCountElement(likeData);
-        div3.appendChild(likeCount);
-
-        handleLikeClick(like, likeData, likeCount, mealData.idMeal);
-      }
-    });
-
-    count();
-  } catch (error) {
-    console.error('Error rendering meals:', error);
-  }
-}
-// Call the function and provide the API key
-// renderMeals('LHYarZybqm9V0G7OV772');
-
-export default renderMeals;
