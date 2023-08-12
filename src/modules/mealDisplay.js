@@ -4,7 +4,7 @@ import { handleSaveComment } from './display-comments.js';
 
 const mealList = document.getElementById('list-home');
 
-export default function renderRecipes(recipe, appId) {
+const renderRecipes = (recipe, appId) => {
   const li = document.createElement('li');
   li.classList.add('card');
 
@@ -54,4 +54,6 @@ export default function renderRecipes(recipe, appId) {
     const commentCountElement = popup.querySelector('.comment-count');
     commentCountElement.textContent = `Comments(${commentCount})`;
   });
-}
+};
+
+export default renderRecipes;
