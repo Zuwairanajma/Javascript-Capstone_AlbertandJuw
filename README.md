@@ -1,7 +1,7 @@
 # Javascript-Capstone_AlbertandJuw
 <a name="readme-top"></a>
 <div align="center">
-<img src="./asset/mealdb-logo.png" alt="mealdb logo" width="140"  height="auto" />
+<img src="../src/asset/mealdb-logo.png" alt="mealdb logo" width="140"  height="auto" />
 
   <h2>MEALS DB API APP</h2>
   <br/>
